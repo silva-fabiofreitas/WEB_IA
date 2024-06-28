@@ -1,0 +1,38 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+    {% block css %}
+    {% endblock %}
+     
+    {% block content %}
+      <!-- Conteúdo Principal -->
+      <main>
+        <!-- Banner -->
+        <div class="jumbotron jumbotron-fluid text-center bg-primary text-white py-5">
+            <div class="container">
+                <h1 class="display-4">Bem-vindo ao Nosso Aplicativo de IA Generativa</h1>
+                <p class="lead">A revolução da inteligência artificial na ponta dos seus dedos.</p>
+            </div>
+        </div>
+
+        <!-- Seção de Funcionalidades -->
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#"><h2>Geração de Texto</h2></a>                    
+                    <p>Crie textos de alta qualidade para qualquer finalidade em segundos.</p>
+                </div>
+                <div class="col-md-4">
+                    <a href="#"><h2>Criação de Imagens</h2></a> 
+                    <p>Gere imagens impressionantes a partir de descrições textuais.</p>
+                </div>
+                <div class="col-md-4">
+                    <a href={% url 'virtual_assistant' %}><h2>Assistente Virtual</h2></a> 
+                    <p>Obtenha respostas e suporte instantâneo com nosso assistente de IA.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% endblock %}
+   
+    {% block extrajs %}{% endblock %}

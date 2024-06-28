@@ -1,0 +1,41 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+    {% block css %}
+    {% endblock %}
+     
+    {% block content %}
+      <!-- Conteúdo Principal -->
+        <main>
+            <!-- Seção de Introdução -->
+            <div class="jumbotron jumbotron-fluid text-center bg-primary text-white py-5">
+                <div class="container">
+                    <h1 class="display-4">Assistente Virtual</h1>
+                    <p class="lead">Interaja com nosso assistente virtual de IA generativa para obter respostas instantâneas.</p>
+                </div>
+            </div>
+    
+            <div class="container my-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Teste o Assistente Virtual</h2>
+                        <p>Digite sua pergunta abaixo e veja como nosso assistente virtual pode ajudar.</p>
+                        <form id="assistente-form">
+                            <div class="mb-3">
+                                <label for="pergunta" class="form-label">Sua Pergunta</label>
+                                <textarea class="form-control" id="pergunta" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </form>
+                        <div id="resposta" class="mt-3">
+                            <h3>Resposta:</h3>
+                            <p id="resposta-texto">A resposta do assistente virtual aparecerá aqui.</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    {% endblock %}
+   
+    {% block extrajs %}{% endblock %}

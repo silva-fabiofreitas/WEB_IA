@@ -14,10 +14,27 @@
 </head>
 
 <body>
-      <!-- Navegação -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">IA Generativa</a>
+            <a class="navbar-brand" href={% url 'home' %}>IA Generativa</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -40,33 +57,8 @@
         </div>
     </nav>
 
-    <!-- Banner -->
-    <div class="jumbotron jumbotron-fluid text-center bg-primary text-white py-5">
-        <div class="container">
-            <h1 class="display-4">Bem-vindo ao Nosso Aplicativo de IA Generativa</h1>
-            <p class="lead">A revolução da inteligência artificial na ponta dos seus dedos.</p>
-        </div>
-    </div>
-
-    <!-- Seção de Funcionalidades -->
-    <div class="container my-5">
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Geração de Texto</h2>
-                <p>Crie textos de alta qualidade para qualquer finalidade em segundos.</p>
-            </div>
-            <div class="col-md-4">
-                <h2>Criação de Imagens</h2>
-                <p>Gere imagens impressionantes a partir de descrições textuais.</p>
-            </div>
-            <div class="col-md-4">
-                <h2>Assistente Virtual</h2>
-                <p>Obtenha respostas e suporte instantâneo com nosso assistente de IA.</p>
-            </div>
-        </div>
-    </div>
-    <div class="content">{% block content %}{% endblock %}</div>
-   
+     <!-- Content -->
+     <div class="content">{% block content %}Página Inicial{% endblock %}</div> 
 
     <!-- Rodapé -->
     <footer class="bg-light py-4">
