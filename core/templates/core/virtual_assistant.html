@@ -2,6 +2,7 @@
 {% load static %}
 
     {% block css %}
+    
     {% endblock %}
      
     {% block content %}
@@ -11,7 +12,7 @@
             <div class="jumbotron jumbotron-fluid text-center bg-primary text-white py-5">
                 <div class="container">
                     <h1 class="display-4">Assistente Virtual</h1>
-                    <p class="lead">Interaja com nosso assistente virtual de IA generativa para obter respostas instantâneas.</p>
+                    <p class="lead">Crie seus mapas mentais.</p>
                 </div>
             </div>
     
@@ -19,17 +20,25 @@
                 <div class="row">
                     <div class="col-12">
                         <h2>Teste o Assistente Virtual</h2>
-                        <p>Digite sua pergunta abaixo e veja como nosso assistente virtual pode ajudar.</p>
                         <form id="assistente-form">
                             <div class="mb-3">
-                                <label for="pergunta" class="form-label">Sua Pergunta</label>
-                                <textarea class="form-control" id="pergunta" rows="3" required></textarea>
+                                <label for="question" class="form-label">Digite sua pergunta para gerar um mapa mental sobre o assunto</label>
+                                <textarea class="form-control" id="question" name='question' rows="3" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Enviar</button>
                         </form>
-                        <div id="resposta" class="mt-3">
-                            <h3>Resposta:</h3>
-                            <p id="resposta-texto">A resposta do assistente virtual aparecerá aqui.</p>
+                        <div id="answer" class="mt-3 px-1 border rounded" style="height: 45vh">
+                            <div class="d-flex mt-1 justify-content-between">
+                                <h4 class="pe-2" title="Mapa Mental" data-bs-toggle="tooltip" data-bs-placement="right"><i class="bi bi-diagram-3"></i></h4>
+                                <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-floppy-fill"></i> Salvar</button>
+                            </div>
+                            <div class="d-flex justify-content-center d-none js-load">
+                                <div class="spinner-border" role="status">
+                                  <span class="visually-hidden">Loading...</span>
+                                </div>
+                              </div>
+                            <svg id="mindmap" style="width: 100%; height: 100%"></svg>
+                                                    
                             
                         </div>
                     </div>
@@ -38,4 +47,10 @@
         </main>
     {% endblock %}
    
-    {% block extrajs %}{% endblock %}
+    {% block extrajs %}
+        <script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.15"></script>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+        <script src="https://cdn.jsdelivr.net/npm/markmap-view"></script>
+
+        <script src="{% static 'core/js/ia_answer.js'  %}"  ></script>
+    {% endblock %}
