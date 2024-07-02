@@ -1,18 +1,13 @@
-{% extends "core/base.html" %} {% load static %} {% block css %}
-<style>
-    .jumbotron {
-        background-color: #0056b3;
-        color: white;
-        padding: 3rem 1rem;
-        text-align: center;
-    }
+{% extends "core/base.html" %}
+{% load static %} 
+{% load crispy_forms_tags %}
 
-</style>
+{% block css %}
 
 {% endblock %} {% block content %}
 
 <!-- Cabeçalho -->
-<header class="jumbotron">
+<header class="jumbotron jumbotron-fluid bg-gradient bg-success text-center text-white py-4">
     <h1>Assistente Virtual</h1>
     <p>Crie seus mapas mentais.</p>
 </header>
@@ -31,12 +26,12 @@
                     </div>
                 </form>
                 <!-- Mindmap -->
-                <section id="answer" class="mt-3 px-1 border rounded bg-body-tertiary" style="height: 52vh">
+                <section id="answer" class="mt-3 px-1 border rounded bg-body-tertiary" style="height: 47vh">
                     <div class="d-flex mt-1 justify-content-between">
                         <h4 class="pe-2" title="Mapa Mental" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i class="bi bi-diagram-3"></i>
                         </h4>
-                        <button class="btn btn-sm btn-outline-secondary">
+                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             <i class="bi bi-floppy-fill"></i> Salvar
                         </button>
                     </div>
@@ -51,6 +46,31 @@
         </div>
     </div>
 </main>
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Salvar MindMap</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="formMindMap" method="post" onsubmit="return false">
+                {% csrf_token %}
+                {{ form | crispy }}
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button id="saveMindMap" type="button" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
 
 {% endblock %} {% block extrajs %}
 <script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.15"></script>

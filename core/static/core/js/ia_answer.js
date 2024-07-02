@@ -4,23 +4,25 @@ function mindMap(markdown) {
   const transformer = new Transformer();
 
   const { root } = transformer.transform(markdown);
- 
-    Markmap.create("#mindmap", { autoFit: true }, root);
+
+  localStorage.setItem('mindMap', markdown)
+
+  Markmap.create("#mindmap", { autoFit: true }, root);
 }
 
-function removeMindMap(selector){
-       // Remove o mapa existente, se houver
-       const container = document.querySelector(selector);
-       if (container.firstChild) {
-         container.innerHTML=''
-       }
+function removeMindMap(selector) {
+  // Remove o mapa existente, se houver
+  const container = document.querySelector(selector);
+  if (container.firstChild) {
+    container.innerHTML = ''
+  }
 }
 
-function spinner(){
-    const spinner = document.getElementsByClassName('js-load')
-    for (const el of spinner){
-        el.classList.toggle('d-none')
-    }
+function spinner() {
+  const spinner = document.getElementsByClassName('js-load')
+  for (const el of spinner) {
+    el.classList.toggle('d-none')
+  }
 }
 
 function submitForm() {
@@ -28,7 +30,7 @@ function submitForm() {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const data = new URLSearchParams(new FormData(form));
-    
+
     removeMindMap('#mindmap')
     spinner()
 
@@ -44,4 +46,42 @@ function submitForm() {
 }
 
 
+function saveMindMap() {
+  saveButton = document.getElementById('saveMindMap');
+  const myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
+
+  saveButton.addEventListener('click', (event) => {
+    const form = document.getElementById("formMindMap");
+    const mindMapMarkdown = localStorage.getItem('mindMap');
+
+    const data = new FormData(form);
+    data.append('content', mindMapMarkdown);
+
+    const csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+    const url = '/mind-map/create/';
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': csrfToken // Include the CSRF token in the header
+      },
+      body: data
+    })
+      .then(response => response.json())
+      .then(data => {
+        form.reset()
+        myModal.hide()
+
+
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
+
+  })
+}
+
+
 submitForm();
+saveMindMap();

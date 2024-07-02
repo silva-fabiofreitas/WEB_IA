@@ -1,0 +1,41 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+
+{% endblock %} {% block content %}
+
+
+<!-- Conteúdo Principal -->
+<main>
+    <div class="container-fluid my-5">
+        <div class="row">
+            <div class="col-12">
+                <h1>Mapas mentais</h1>
+                <div class="d-flex flex-wrap justify-content-center">
+                    {% for map in maps %}
+                    <div class="card shadow-sm m-3" style="width: 20rem; height:20rem ;">
+                        <div class="card-header bg-gradient bg-success text-white-50 fw-medium"><i class="bi bi-diagram-2"></i>{{map.category}}</div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{map.name}} </h5>
+                            <svg id="mindMap{{ forloop.counter }}" data-markdown="{{map.content}}" style="width: 100%; height: 90%"></svg>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+</main>
+
+
+
+
+
+{% endblock %} {% block extrajs %}
+<script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.15"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/markmap-view"></script>
+
+<script src="{% static 'core/js/mind_map_list.js'  %}"></script>
+{% endblock %}
