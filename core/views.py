@@ -19,7 +19,12 @@ def virtual_assistant(request):
 
 def ia_answer(request):
     question = request.GET.get('question', '')
-    answer = question and MindMap(question).invoke() 
+    history_chat = request.session.get('history_chat',[])
+    if question:
+        answer = MindMap(question).chat(history_chat)
+        history_chat += [['human',question], ['ai',answer]]       
+        request.session['history_chat'] = history_chat
+    
     return JsonResponse({'answer':answer})
 
 
