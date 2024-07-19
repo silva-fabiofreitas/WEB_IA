@@ -85,3 +85,20 @@ function saveMindMap() {
 
 submitForm();
 saveMindMap();
+
+
+
+
+
+
+// Consumir stream de dados 
+async function readData(url) {
+  const response = await fetch(url);
+  for await (const chunk of response.body) {
+    var string = new TextDecoder().decode(chunk);
+    console.log(string)
+    // Do something with each "chunk"
+  }
+  // Exit when done
+  }
+

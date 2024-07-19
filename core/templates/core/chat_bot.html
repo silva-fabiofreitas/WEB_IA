@@ -1,0 +1,47 @@
+{% extends "core/base.html" %}
+{% load static %} 
+{% load crispy_forms_tags %}
+
+{% block css %}
+
+{% endblock %} {% block content %}
+
+<!-- Cabeçalho -->
+<header class="jumbotron jumbotron-fluid bg-gradient bg-success text-center text-white py-4">
+    <h1>Loren IA</h1>
+    <p>Fale comigo!</p>
+</header>
+
+<!-- Conteúdo Principal -->
+<main>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center">Olá, vamos começar</h2>
+                <form id="assistente-form">
+                    <div class="mb-3 text-center">
+                        <p>O que você quer me contar.</p>
+                        <input class="form-control" id="question" name="question" autocomplete="off" required></input>
+                        <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+                    </div>
+                </form>
+                <!-- Saida -->
+                <section class="mt-3 px-2 py-2 overflow-auto" style="height: 47vh">
+                    <div class="d-flex justify-content-center d-none js-load">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div id="answer" style="width: 100%; height: 90%"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+
+  
+
+{% endblock %} {% block extrajs %}
+
+<script src="{% static 'core/js/chat_bot.js'  %}"></script>
+{% endblock %}

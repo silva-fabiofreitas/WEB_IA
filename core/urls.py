@@ -8,4 +8,6 @@ urlpatterns = [
     path('virtual-assistant/answer/', views.ia_answer, name='virtual_assistant_answer'),
     path('mind-map/create/', views.mind_map_save, name='mind_map_create'),
     path('mind-map/list/', views.mind_map_list, name='mind_map_list'),
+    path('stream/', views.streaming_view, name='stream'),
+    path('chatbot/', views.chat_bot, name='chat_bot'),
     ]
