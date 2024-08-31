@@ -22,11 +22,8 @@ def virtual_assistant(request):
 
 def ia_answer(request):
     question = request.GET.get("question", "")
-    history_chat = request.session.get("history_chat", [])
     if question:
-        answer = MindMap(question).chat(history_chat)
-        history_chat += [["human", question], ["ai", answer]]
-        request.session["history_chat"] = history_chat
+        answer = MindMap(question).invoke()
 
     return JsonResponse({"answer": answer})
 
@@ -47,8 +44,7 @@ def mind_map_list(request):
 
 def chat_bot(request):
     question = request.GET.get("question", "")
-    is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"
-
+    is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"    
     session_id = generate_custom_uuid(f'{request.user.username}:{request.user.id}')
     if is_ajax:
         res = ChatHistory().stream(question,session_id)        

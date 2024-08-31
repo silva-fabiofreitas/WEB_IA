@@ -5,14 +5,15 @@ function spinner() {
   }
 }
 
-async function setAnswer(answer, element){
+async function setAnswer(answer, element) {
   const elementAnswer = document.getElementById('answer')
   elementAnswer.append(element)
-  element.innerHTML +=answer
-} 
+  element.innerHTML += answer
+  element.scrollIntoView({ behavior: "auto"})
+}
 
 
-function setQuestion(question){
+function setQuestion(question) {
   const paragraphText = document.createElement('p')
   const elementAnswer = document.getElementById('answer')
   paragraphText.classList.add('border', 'rounded-1', 'p-2', 'text-bg-light', 'shadow-sm')
@@ -41,7 +42,7 @@ async function readData(url) {
   const response = await fetch(url, {
     method: "GET",
     headers: {
-    "X-Requested-With": "XMLHttpRequest",
+      "X-Requested-With": "XMLHttpRequest",
     }
   });
 
@@ -50,14 +51,14 @@ async function readData(url) {
   iconIA.className = 'bi-back pe-2'
   paragraphText.append(iconIA)
   paragraphText.classList.add('p-2', 'bg-white')
-  
+
   for await (const chunk of response.body) {
     var string = new TextDecoder().decode(chunk);
     setAnswer(string, paragraphText)
     // Do something with each "chunk"
   }
   // Exit when done
-  }
+}
 
 
 

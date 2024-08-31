@@ -12,7 +12,7 @@ class MindMap:
         self.question = question
 
     def invoke(self):
-        llm = OpenAI(temperature=0.1)
+        llm = ChatOpenAI(temperature=0.1, model='gpt-3.5-turbo')
         chain = self.prompt | llm | self.output_parser
         return chain.invoke({"input": self.question})
 

@@ -1,10 +1,9 @@
 from langchain_openai import ChatOpenAI, OpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser, MarkdownListOutputParser
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, trim_messages
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.runnables import ConfigurableFieldSpec
-
 
 from decouple import config
 
@@ -86,11 +85,22 @@ class ChatHistory(SessionHistoryDatabase):
     @property
     def runnable_with_history(self):
         return RunnableWithMessageHistory(
-            self.llm | StrOutputParser(),
+            self.trimm | self.llm | StrOutputParser(),
             self.get_session_history,
         )
+        
     @property    
     def llm(self):
-        return ChatOpenAI(model="gpt-3.5-turbo-0125")
-
-
+        return ChatOpenAI(model="gpt-4o-mini")
+    
+    @property
+    def trimm(self):
+        return trim_messages(
+        max_tokens=400,
+        strategy="last",
+        token_counter=self.llm,
+        include_system=True,
+        allow_partial=False,
+        start_on="human",
+        )
+    
