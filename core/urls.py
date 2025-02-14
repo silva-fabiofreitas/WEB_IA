@@ -10,4 +10,5 @@ urlpatterns = [
     path('mind-map/list/', views.mind_map_list, name='mind_map_list'),
     path('stream/', views.streaming_view, name='stream'),
     path('chatbot/', views.chat_bot, name='chat_bot'),
+    path('dashboard-ia/', views.dashboard_ia, name='dashboard_ia'),
     ]

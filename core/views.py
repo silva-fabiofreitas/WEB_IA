@@ -53,6 +53,10 @@ def chat_bot(request):
     return render(request, "core/chat_bot.html")
 
 
+def dashboard_ia(request):
+    return render(request, "core/dashboard_ia.html")
+
+
 def stream_data():
     # Generate data in chunks
     for i in range(10):

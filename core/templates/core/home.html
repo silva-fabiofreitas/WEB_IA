@@ -6,38 +6,66 @@
     {% endblock %}
      
     {% block content %}
-      <!-- Conteúdo Principal -->
-      <main>
-        <!-- Banner -->
-        <div class="jumbotron jumbotron-fluid bg-gradient bg-success text-center text-white py-4">
-            <div class="container">
-                <h1 class="display-4">Bem-vindo ao Nosso Aplicativo de IA Generativa</h1>
-                <p class="lead">A revolução da inteligência artificial na ponta dos seus dedos.</p>
-            </div>
+    
+    </head>
+    <body>
+     
+    
+      <!-- Hero Section -->
+      <section id="home" class="hero-section text-center">
+        <div class="container">
+          <h1 class="display-4">Transforme Ideias em Realidade com IA Generativa</h1>
+          <p class="lead">Explore nossos módulos avançados e crie soluções inteligentes.</p>
+          <a href="#modules" class="btn btn-light btn-lg">Conheça os Módulos</a>
+          <a href="#" class="btn btn-outline-light btn-lg">Experimente Agora</a>
         </div>
-
-        <!-- Seção de Funcionalidades -->
-        <div class="container my-5">
-            <div class="row">
-                <div class="col-md-3">
-                    <a href="#"><h2>Geração de Texto</h2></a>                    
-                    <p>Crie textos de alta qualidade para qualquer finalidade em segundos.</p>
-                </div>
-                <div class="col-md-3">
-                    <a href="#"><h2>Criação de Imagens</h2></a> 
-                    <p>Gere imagens impressionantes a partir de descrições textuais.</p>
-                </div>
-                <div class="col-md-3">
-                    <a href="{% url 'virtual_assistant' %}"><h2>Assistente Virtual</h2></a> 
-                    <p>Obtenha respostas e suporte instantâneo com nosso assistente de IA.</p>
-                </div>
-                <div class="col-md-3">
-                    <a href="{% url 'chat_bot' %}"><h2>Chatbot</h2></a> 
-                    <p>Converse amigavelmente com uma IA</p>
-                </div>
-            </div>
+      </section>
+    
+    <!-- Seção de Módulos -->
+  <section id="modules" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Nossos Módulos de IA Generativa</h2>
+      <div class="row g-4">
+        <!-- Card 1: Geração de Texto -->
+        <div class="col-md-3">
+          <div class="module-card text-center p-4 h-100">
+            <i class="bi bi-textarea-t icon"></i>
+            <h3>Geração de Texto</h3>
+            <p>Crie textos automáticos com modelos de linguagem avançados.</p>
+            <a href="#" class="btn btn-primary">Saiba Mais</a>
+          </div>
         </div>
-    </main>
+        <!-- Card 2: Criação de Imagens -->
+        <div class="col-md-3">
+          <div class="module-card text-center p-4 h-100">
+            <i class="bi bi-image icon"></i>
+            <h3>Criação de Imagens</h3>
+            <p>Gere imagens realistas a partir de descrições textuais.</p>
+            <a href="#" class="btn btn-primary">Saiba Mais</a>
+          </div>
+        </div>
+        <!-- Card 3: Síntese de Voz -->
+        <div class="col-md-3">
+          <div class="module-card text-center p-4 h-100">
+            <i class="bi bi-mic icon"></i>
+            <h3>Síntese de Voz</h3>
+            <p>Converta texto em voz natural com IA.</p>
+            <a href="#" class="btn btn-primary">Saiba Mais</a>
+          </div>
+        </div>
+        <!-- Card 4: Dashboard com IA -->
+        <div class="col-md-3">
+          <div class="module-card text-center p-4 h-100">
+            <i class="bi bi-bar-chart-line icon"></i>
+            <h3>Dashboard com IA</h3>
+            <p>Crie dashboards inteligentes e personalizados com análises em tempo real.</p>
+            <a href="{% url 'dashboard_ia' %}" class="btn btn-primary">Saiba Mais</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+      
     {% endblock %}
    
     {% block extrajs %}{% endblock %}
