@@ -5,6 +5,7 @@ description = "Aplicativos de IA"
 authors = ["Fabio Freitas"]
 license = "Mit"
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
