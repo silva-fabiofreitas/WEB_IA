@@ -20,9 +20,14 @@ python-decouple = "^3.8"
 psycopg2 = "^2.9.9"
 langgraph = "^0.1.7"
 langchain-postgres = "^0.0.9"
+pandas = "^2.2.3"
+openpyxl = "^3.1.5"
+orjson = "^3.10.15"
+langchainhub = "^0.1.21"
 
 [tool.poetry.group.dev.dependencies]
 ipdb = "^0.13.13"
+ipykernel = "^6.29.5"
 
 [build-system]
 requires = ["poetry-core"]
