@@ -11,4 +11,5 @@ urlpatterns = [
     path('stream/', views.streaming_view, name='stream'),
     path('chatbot/', views.chat_bot, name='chat_bot'),
     path('dashboard-ia/', views.dashboard_ia, name='dashboard_ia'),
+    path('text-to-sql/', views.text_to_sql, name='text_to_sql')
     ]

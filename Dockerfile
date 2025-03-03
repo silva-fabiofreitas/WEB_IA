@@ -14,5 +14,3 @@ RUN pip install poetry
 COPY . .
 
 RUN poetry install
-
-CMD poetry run python manage.py migrate
