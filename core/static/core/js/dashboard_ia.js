@@ -18,18 +18,63 @@ class IA {
     }
 }
 
-    // Função para ler o arquivo CSV ou XLS
+    document.getElementById('saveFile').addEventListener('click', function () {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+
+        if (!file) {
+            alert('Selecione um arquivo antes de enviar.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+            fetch('/text-to-sql/', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                document.getElementById('response').textContent = 'Erro ao enviar o arquivo.';
+            });
+    });
+
+    // Função para ler o arquivo CSV, XLS ou XLSX
     document.getElementById('fileInput').addEventListener('change', function (event) {
         const file = event.target.files[0];
+        console.log(file);
         if (file) {
             const reader = new FileReader();
             reader.onload = function (e) {
                 const data = e.target.result;
-                // Simulação de leitura de CSV (para XLS/XLSX, use uma biblioteca como SheetJS)
-                const rows = data.split('\n').map(row => row.split(','));
+                let rows = [];
+
+                // Verificar o tipo de arquivo
+                if (file.name.endsWith('.csv')) {
+                    // Processar CSV
+                    rows = data.split('\n').map(row => row.split(','));
+                } else if (file.name.endsWith('.xls') || file.name.endsWith('.xlsx')) {
+                    // Processar XLS/XLSX com SheetJS
+                    const workbook = XLSX.read(data, { type: 'binary' });
+                    const sheetName = workbook.SheetNames[0]; // Pega a primeira planilha
+                    const sheet = workbook.Sheets[sheetName];
+                    rows = XLSX.utils.sheet_to_json(sheet, { header: 1 }); // Converte para JSON
+                }
+
+                // Renderizar a tabela
                 renderTable(rows);
             };
-            reader.readAsText(file);
+
+            if (file.name.endsWith('.csv')) {
+                reader.readAsText(file);
+            } else {
+                reader.readAsBinaryString(file); // Para XLS/XLSX
+            }
         }
     });
 

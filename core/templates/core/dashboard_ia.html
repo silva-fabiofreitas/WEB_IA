@@ -11,12 +11,16 @@
 
     <!-- Upload de Arquivo -->
     <div class="file-upload mb-4">
-        <input type="file" id="fileInput" accept=".csv, .xls, .xlsx" class="d-none">
+        <input type="file" name="file" id="fileInput" accept=".csv, .xls, .xlsx" class="d-none">
         <label for="fileInput" class="mb-0">
             <i class="bi bi-upload"></i>
             <p class="mt-2">Clique para fazer upload de um arquivo CSV ou XLS</p>
         </label>
     </div>
+
+    <!-- Salvar planilha -->
+    <button class="btn btn-primary my-2" id="saveFile"><i class="bi bi-save"></i></button>
+    <div id="response"></div>
 
     <!-- Pré-visualização da Planilha -->
     <div class="preview-table">
@@ -27,6 +31,7 @@
             <tbody id="tableBody"></tbody>
         </table>
     </div>
+    
 
     <!-- Instruções para a IA -->
     <div class="instructions-input">
@@ -48,5 +53,6 @@
 
 {% block extrajs %}
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="{% static 'core/js/dashboard_ia.js' %}" ></script>
 {% endblock %}

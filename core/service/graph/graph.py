@@ -31,4 +31,4 @@ graph_builder.add_edge(GENERATE_CHART, END)
 
 graph = graph_builder.compile()
 
-graph.get_graph().draw_mermaid_png(output_file_path='graph.png')
+# graph.get_graph().draw_mermaid_png(output_file_path='graph.png')
