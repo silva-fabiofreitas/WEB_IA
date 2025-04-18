@@ -3,17 +3,14 @@ from django.http import HttpResponse, JsonResponse, Http404, StreamingHttpRespon
 import time
 from sqlalchemy import create_engine
 from decouple import config
-from langchain_community.utilities import SQLDatabase
+from core.service.sql_rag import PineconeSQLIngestor, PineconeVectorStoreService
 from core.forms import MindMapForm
 from core.service.mind_map import ChatBot, MindMap
 from core.service.memory import ChatHistory, generate_custom_uuid
 from core.models import MindMap as Mind
 from core.service.graph.graph import graph
 from core.service.sql_agent import FileFormatNotSupported, get_database_backend, ManageTextToSql, TableDescription, LoadDataFrame
-import uuid
-import asyncio
 from django.views.decorators.csrf import csrf_exempt
-import pandas as pd
 import json
 
 
@@ -111,3 +108,12 @@ def text_to_sql(request):
     from pprint import pprint
     pprint(res)
     return JsonResponse(data=res['echart_options']['options'], safe=False)
+
+
+def run_commands(request):
+    ingestor = PineconeSQLIngestor(
+        PineconeVectorStoreService()
+    )
+    ingestor.ingest()
+
+    return JsonResponse({"success": "true"}, status=200)
